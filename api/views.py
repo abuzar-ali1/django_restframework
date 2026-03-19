@@ -6,17 +6,20 @@ from .serializers import StudentSerializer
 
 
 
+
+def welcome():
+    return Respose('Welcome to Django')
+
 # Create your views here.
 @api_view(['GET' ,'POST' , 'PUT' , 'DELETE' ])
-
 def StudentAPI(request):
     if request.method == 'GET':
-        id = request.data.get(id)
+        id = request.data.get('id')
         if id is not None:
             stu =  Student.objects.get(id=id)
-            seriliazer = StundetSerializer(stu)
-            return Response(serializer.data)
+            seriliazer = StudentSerializer(stu)
+            return Response(seriliazer.data)
 
     stu = Student.objects.all()
-    serializer = StundetSerializer(Stu)
-    return Reponse(serializer.data)        
+    serializer = StudentSerializer(stu , many=True)
+    return Response(serializer.data)        
