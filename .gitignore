@@ -1,0 +1,36 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environment
+venv/
+env/
+.venv/
+.env
+
+# Local database
+db.sqlite3
+*.sqlite3
+
+# Static and media files (if generated/uploaded locally)
+# Adjust these paths based on your project structure and deployment strategy
+static_root/
+media_root/
+media/
+
+# IDE specific files
+.idea/ # For PyCharm
+.vscode/ # For VS Code (if you don't want to share settings)
+
+# Operating System files
+.DS_Store # macOS
+Thumbs.db # Windows
+
+# Log files
+*.log
+*.pot
+
+# Secret key and local settings (important for security)
+local_settings.py
