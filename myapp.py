@@ -27,7 +27,7 @@ URL = "http://127.0.0.1:8000/studentapi/"
 def add_data():
     data = {
     'name' : 'buzar',
-    'email' : 'abuzar@gmail.com',
+    'roll' : 546,
     'city' : 'lahore',
     }
     headers = {'content-Type'  :'application/json'}
@@ -38,7 +38,7 @@ def add_data():
 
 
 
-# add_data()
+add_data()
 
 
 
@@ -55,7 +55,7 @@ def get_data(id = None):
 
 
 
-get_data(3)    
+# get_data(3)    
 
 
 def update_data():

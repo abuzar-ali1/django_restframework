@@ -20,6 +20,11 @@ def StudentAPI(request):
             seriliazer = StudentSerializer(stu)
             return Response(seriliazer.data)
 
-    stu = Student.objects.all()
-    serializer = StudentSerializer(stu , many=True)
-    return Response(serializer.data)        
+        stu = Student.objects.all()
+        serializer = StudentSerializer(stu , many=True)
+        return Response(serializer.data)        
+    elif request.method == 'POST':
+        serializer = StudentSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({'msg' : 'Data Posted'})
