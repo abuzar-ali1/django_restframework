@@ -36,4 +36,8 @@ def StudentAPI(request):
             serializer.save()
             return Response({'data' : 'Data Successfully Updated'})
          
-
+    elif request.method == 'DELETE':
+        id =  request.data.get('id')
+        stu =  Student.objects.get(pk=id)
+        stu.delete()
+        return Response({'res' : 'Data Deleted'})
