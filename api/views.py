@@ -21,14 +21,14 @@ def student_api(request , pk=None):
             return Response(seriliazer.data)
         stu = Student.objects.all()
         serializer = StudentSerializer(stu , many=True)
-        return Response(serializer.data)     
+        return Response(serializer.data , , status=status.HTTP_201_CREATED)     
 
     elif request.method == 'POST':
         serializer = StudentSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response({'msg' : 'Data Posted'})
-        return Response(serializer.errors)     
+        return Response(serializer.errors , status=status.HTTP_400_BAD_REQUEST)     
 
     elif request.method == 'PUT':
         id = pk
@@ -37,7 +37,7 @@ def student_api(request , pk=None):
         if serializer.is_valid():
             serializer.save()
             return Response({'data' : 'Data Successfully Updated'})
-        return Response(serializer.errors)     
+        return Response(serializer.errors , status=status.HTTP_400_BAD_REQUEST)     
 
     elif request.method == 'PATCH':
         id = pk
@@ -46,7 +46,7 @@ def student_api(request , pk=None):
         if serializer.is_valid():
             serializer.save()
             return Response({'data' : 'Data Successfully Updated'})
-        return Response(serializer.errors) 
+        return Response(serializer.errors , status=status.HTTP_400_BAD_REQUEST) 
 
     elif request.method == 'DELETE':
         id =  pk
