@@ -28,3 +28,12 @@ def StudentAPI(request):
         if serializer.is_valid():
             serializer.save()
             return Response({'msg' : 'Data Posted'})
+    elif request.method == 'PUT':
+        id = request.data.get('id')
+        stu = Student.objects.get(pk=id)
+        serializer = StudentSerializer(stu , data=request.data , partial = True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({'data' : 'Data Successfully Updated'})
+         
+

@@ -38,7 +38,7 @@ def add_data():
 
 
 
-add_data()
+# add_data()
 
 
 
@@ -66,13 +66,15 @@ def update_data():
         # 'is_done' : True
     }
     json_data = json.dumps(data)
-    r = requests.put(url = URL , data = json_data)
+    headers = {'content-Type'  :'application/json'}
+
+    r = requests.put(url = URL , headers=headers, data = json_data)
     data = r.json()
     print(data)    
 
 
 
-# update_data()
+update_data()
 
 
 
