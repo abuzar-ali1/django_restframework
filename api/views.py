@@ -105,26 +105,29 @@ class StudentAPI(APIView):
         return Response({'res' : 'Data Deleted'})
            
 
+# CURD Operations using Minix Concepts
 
-class StudentList(GenericAPIView , ListModelMixin):
+
+class GCStudentAPI(GenericAPIView , ListModelMixin ,CreateModelMixin):
     queryset = Student.objects.all()
     serializer_class = StudentSerializer
 
     def get(self , request , *args , **kwargs):
         return self.list( request , *args , **kwargs)
 
-
-class StudentCreate(GenericAPIView , CreateModelMixin):
-    queryset = Student.objects.all()
-    serializer_class = StudentSerializer
-
     def post(self , request , *args , **kwargs):
         return self.create( request , *args , **kwargs)
 
  
-class StudentRetrieve(GenericAPIView , DestroyModelMixin):
+class UPDStudentAPI(GenericAPIView  ,  UpdateModelMixin ,  DestroyModelMixin):
     queryset = Student.objects.all()
     serializer_class = StudentSerializer
+
+    def update(self , request , *args , **kwargs):
+        return self.update( request , *args , **kwargs)
+
+    def update(self , request , *args , **kwargs):
+        return self.partail_update( request , *args , **kwargs)    
 
     def delete(self , request , *args , **kwargs):
         return self.destroy( request , *args , **kwargs)
