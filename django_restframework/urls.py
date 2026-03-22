@@ -9,7 +9,7 @@ urlpatterns = [
     # path('studentapi/' , views.student_api), 
     # path('studentapi/<int:pk>/' , views.student_api)
 
-    path('studentapi/' , views.StudentCreate.as_view()), 
-    path('studentapi/<int:pk>/' , views.StudentAPI.as_view())
+    # path('studentapi/' , views.StudentRetrieve.as_view()), 
+    path('studentapi/<int:pk>/' , views.StudentRetrieve.as_view())
 
 ]

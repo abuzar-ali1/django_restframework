@@ -7,7 +7,7 @@ from django.http import HttpResponse
 from rest_framework.views import APIView
 from rest_framework import status
 from rest_framework.generics import GenericAPIView
-from rest_framework.mixins import ListModelMixin , CreateModelMixin
+from rest_framework.mixins import ListModelMixin , CreateModelMixin , RetrieveModelMixin , UpdateModelMixin , DestroyModelMixin
 
 
 def welcome(request):
@@ -120,5 +120,13 @@ class StudentCreate(GenericAPIView , CreateModelMixin):
 
     def post(self , request , *args , **kwargs):
         return self.create( request , *args , **kwargs)
+
+ 
+class StudentRetrieve(GenericAPIView , DestroyModelMixin):
+    queryset = Student.objects.all()
+    serializer_class = StudentSerializer
+
+    def delete(self , request , *args , **kwargs):
+        return self.destroy( request , *args , **kwargs)
 
  
