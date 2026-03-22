@@ -6,8 +6,8 @@ from .serializers import StudentSerializer
 from django.http import HttpResponse
 from rest_framework.views import APIView
 from rest_framework import status
-
-
+from rest_framework.generics import GenericAPIView
+from rest_framework.mixins import ListModelMixin
 
 
 def welcome(request):
@@ -106,3 +106,9 @@ class StudentAPI(APIView):
            
 
 
+class StudentList(GenericAPIView , ListModelMixin):
+    queryset = Student.objects.all()
+    serializer_class = StudentSerializer
+
+    def get(self , request , *args , **kwargs):
+        return self.list( request , *args , **kwargs)
