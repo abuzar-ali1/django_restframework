@@ -6,7 +6,7 @@ from .serializers import StudentSerializer
 from django.http import HttpResponse
 from rest_framework.views import APIView
 from rest_framework import status
-from rest_framework.generics import GenericAPIView
+from rest_framework.generics import GenericAPIView , ListAPIView , CreateAPIView , RetrieveAPIView , UpdateAPIView , DestroyAPIView , ListCreateAPIView
 from rest_framework.mixins import ListModelMixin , CreateModelMixin , RetrieveModelMixin , UpdateModelMixin , DestroyModelMixin
 
 
@@ -132,4 +132,10 @@ class UPDStudentAPI(GenericAPIView  ,  UpdateModelMixin ,  DestroyModelMixin):
     def delete(self , request , *args , **kwargs):
         return self.destroy( request , *args , **kwargs)
 
- 
+#  CURD with the Concrete  View Classes
+
+
+
+class LCStudent(ListCreateAPIView):
+    queryset = Student.objects.all()
+    serializer_class = StudentSerializer
