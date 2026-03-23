@@ -10,7 +10,8 @@ from rest_framework.generics import GenericAPIView , ListCreateAPIView, Retrieve
 from rest_framework.mixins import ListModelMixin , CreateModelMixin , RetrieveModelMixin , UpdateModelMixin , DestroyModelMixin
 from rest_framework import viewsets
 from django.shortcuts import   get_object_or_404  
-
+from rest_framework.authentication import BasicAuthentication
+from rest_framework.permissions import IsAuthenticated
 
 def welcome(request):
     return HttpResponse('<h1>Welcome in the Django</h1>')
@@ -184,7 +185,8 @@ class StudentAPIView(viewsets.ViewSet):
 class StudentModelViewSet(viewsets.ModelViewSet):
     queryset = Student.objects.all()
     serializer_class = StudentSerializer
-
+    authentication_classes = [BasicAuthentication]
+    permission_classes = [IsAuthenticated]
 
 # Read only 
 class StudentReadOnlyModelViewSet(viewsets.ReadOnlyModelViewSet):
