@@ -10,6 +10,6 @@ urlpatterns = [
     # path('studentapi/<int:pk>/' , views.student_api)
 
     path('studentapi/' , views.LCStudent.as_view()), 
-    path('studentapi/<int:pk>/' , views.UPDStudentAPI.as_view())
+    path('studentapi/<int:pk>/' , views.RUStudent.as_view())
 
 ]
