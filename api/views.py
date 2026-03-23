@@ -6,7 +6,7 @@ from .serializers import StudentSerializer
 from django.http import HttpResponse
 from rest_framework.views import APIView
 from rest_framework import status
-from rest_framework.generics import GenericAPIView , ListAPIView , CreateAPIView , RetrieveAPIView , UpdateAPIView , DestroyAPIView , ListCreateAPIView, RetrieveUpdateAPIView , RetrieveUpdateDestroyAPIView
+from rest_framework.generics import GenericAPIView , ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.mixins import ListModelMixin , CreateModelMixin , RetrieveModelMixin , UpdateModelMixin , DestroyModelMixin
 
 
@@ -139,12 +139,6 @@ class UPDStudentAPI(GenericAPIView  ,  UpdateModelMixin ,  DestroyModelMixin):
 class LCStudent(ListCreateAPIView):
     queryset = Student.objects.all()
     serializer_class = StudentSerializer
-
-
-class RUStudent(RetrieveUpdateAPIView):
-    queryset = Student.objects.all()
-    serializer_class = StudentSerializer    
-
 
 
 class RUDStudent(RetrieveUpdateDestroyAPIView):
