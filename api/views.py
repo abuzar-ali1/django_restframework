@@ -159,25 +159,34 @@ class StudentAPIView(viewsets.ViewSet):
         return Response(serializer.data)
 
     def retrieve(self, request, pk=None):
-        # Using get_object_or_404 prevents a 500 server error if the ID doesn't exist
         stu = get_object_or_404(Student, pk=pk)
         serializer = StudentSerializer(stu)
         return Response(serializer.data)
 
     def update(self, request, pk=None):
-        stu = get_object_or_404(Student, pk=pk)
-        
-        # Fixed typos and added data validation
+        stu = get_object_or_404(Student, pk=pk)        
         serializer = StudentSerializer(stu, data=request.data)
         if serializer.is_valid():
-            serializer.save() # You must save the validated data to the database
-            return Response(serializer.data)
-        
-        # If the data is invalid, return a 400 Bad Request with the errors
+            serializer.save() 
+            return Response(serializer.data)        
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def destroy(self, request, pk=None):
         stu = get_object_or_404(Student, pk=pk)
         stu.delete()
-        # Fixed typo "Respone" -> "Response"
-        return Response({'msg': 'Deleted Data'}, status=status.HTTP_204_NO_CONTENT)
+        return Response({'msg': 'Deleted Data'}, status=status.HTTP_204_NO_CONTENT) 
+
+ 
+ 
+#CURD with ModelViewSets
+# 
+
+class StudentModelViewSet(viewsets.ModelViewSet):
+    queryset = Student.objects.all()
+    serializer_class = StudentSerializer
+
+
+# Read only 
+class StudentReadOnlyModelViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Student.objects.all()
+    serializer_class = StudentSerializer    
