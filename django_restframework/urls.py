@@ -16,7 +16,8 @@ urlpatterns = [
     path('' , views.welcome),
     # path('studentapi/' , views.student_api), 
     # path('studentapi/<int:pk>/' , views.student_api)
-    path('api/' , include(router.urls))
+    path('api/' , include(router.urls)),
+    path('auth/' , include('rest_framework.urls')),
     # path('studentapi/' , views.LCStudent.as_view()), 
     # path('studentapi/<int:pk>/' , views.RUDStudent.as_view())
 
