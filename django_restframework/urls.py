@@ -3,6 +3,7 @@ from django.contrib import admin
 from django.urls import path , include
 from api import views
 from rest_framework.routers import DefaultRouter
+from rest_framework.authtoken.views import obtain_auth_token
 
 
 router = DefaultRouter()
@@ -16,9 +17,12 @@ urlpatterns = [
     path('' , views.welcome),
     # path('studentapi/' , views.student_api), 
     # path('studentapi/<int:pk>/' , views.student_api)
-    path('api/' , include(router.urls)),
-    path('auth/' , include('rest_framework.urls')),
+    
     # path('studentapi/' , views.LCStudent.as_view()), 
     # path('studentapi/<int:pk>/' , views.RUDStudent.as_view())
 
+    
+    path('api/' , include(router.urls)),
+    path('auth/' , include('rest_framework.urls')),
+    path('gettoken/' , obtain_auth_token)    
 ]
