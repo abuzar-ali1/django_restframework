@@ -189,8 +189,9 @@ class StudentModelViewSet(viewsets.ModelViewSet):
     queryset = Student.objects.all()
     serializer_class = StudentSerializer
     authentication_classes = [SessionAuthentication]
-    permission_classes = [IsAuthenticatedOrReadOnly]
-    throttle_classes = [ZarRateThrottle , AnonRateThrottle]
+    # permission_classes = [IsAuthenticatedOrReadOnly]
+    # throttle_classes = [ZarRateThrottle , AnonRateThrottle]
+    filterset_fields = ['name' , 'city']
 
 # Read only 
 class StudentReadOnlyModelViewSet(viewsets.ReadOnlyModelViewSet):

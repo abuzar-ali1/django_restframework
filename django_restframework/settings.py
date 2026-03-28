@@ -39,8 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework.authtoken',
-    'api',
     'rest_framework_simplejwt',
+    'django_filters',
+    'api',
 ]
 
 MIDDLEWARE = [
@@ -139,14 +140,24 @@ STATIC_URL = 'static/'
 # The default throttling policy may be set globally, using the DEFAULT_THROTTLE_CLASSES and DEFAULT_THROTTLE_RATES settings. For example.
 
 
+# REST_FRAMEWORK = {
+#     'DEFAULT_THROTTLE_CLASSES': [
+#         'rest_framework.throttling.AnonRateThrottle',
+#         'rest_framework.throttling.UserRateThrottle'
+#     ],
+#     'DEFAULT_THROTTLE_RATES': {
+#         'anon': '5/day',
+#         'user': '10/day',
+#         'Zar' : '3/day',
+#     }
+# }
+
+
+
+
+# Default Filter for all views
 REST_FRAMEWORK = {
-    'DEFAULT_THROTTLE_CLASSES': [
-        'rest_framework.throttling.AnonRateThrottle',
-        'rest_framework.throttling.UserRateThrottle'
-    ],
-    'DEFAULT_THROTTLE_RATES': {
-        'anon': '5/day',
-        'user': '10/day',
-        'Zar' : '3/day',
-    }
+    'DEFAULT_FILTER_BACKENDS': (
+        'django_filters.rest_framework.DjangoFilterBackend',
+    ),
 }
