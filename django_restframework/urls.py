@@ -5,7 +5,7 @@ from api import views
 from rest_framework.routers import DefaultRouter
 from rest_framework.authtoken.views import obtain_auth_token
 from api.auth import CustomAuthToken
-from rest_framework_simplejwt.views import   TokenObtainPairView, TokenRefreshView
+from rest_framework_simplejwt.views import   TokenObtainPairView, TokenRefreshView , TokenVerifyView
 
 
 
@@ -38,6 +38,12 @@ urlpatterns = [
 
     path('api/token/' ,TokenObtainPairView.as_view()),
     path('api/refresh/' , TokenRefreshView.as_view()),
+
+
+    # Verify Token with the follwing path
+
+    path('api/token/verify/' , TokenVerifyView.as_view()),
+
 
     
 
