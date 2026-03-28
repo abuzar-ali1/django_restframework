@@ -16,6 +16,15 @@ from .permissions import StudentPermissions
 from rest_framework_simplejwt.authentication  import JWTAuthentication
 from rest_framework.throttling import UserRateThrottle , AnonRateThrottle
 from .throttles import ZarRateThrottle 
+from django_filters.rest_framework import  DjangoFilterBackend
+
+
+
+
+
+
+
+
 def welcome(request):
     return HttpResponse('<h1>Welcome in the Django</h1>')
 
@@ -191,6 +200,10 @@ class StudentModelViewSet(viewsets.ModelViewSet):
     authentication_classes = [SessionAuthentication]
     # permission_classes = [IsAuthenticatedOrReadOnly]
     # throttle_classes = [ZarRateThrottle , AnonRateThrottle]
+
+
+    # If you want a seperate filter for a view then yiou can add this 
+    filter_backends = [DjangoFilterBackend]
     filterset_fields = ['name' , 'city']
 
 # Read only 
