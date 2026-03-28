@@ -13,6 +13,7 @@ from django.shortcuts import   get_object_or_404
 from rest_framework.authentication import BasicAuthentication ,  TokenAuthentication
 from rest_framework.permissions import IsAuthenticated , AllowAny
 from .permissions import StudentPermissions
+from rest_framework_simplejwt.authentication  import JWTAuthentication
 
 def welcome(request):
     return HttpResponse('<h1>Welcome in the Django</h1>')
@@ -186,7 +187,7 @@ class StudentAPIView(viewsets.ViewSet):
 class StudentModelViewSet(viewsets.ModelViewSet):
     queryset = Student.objects.all()
     serializer_class = StudentSerializer
-    authentication_classes = [TokenAuthentication]
+    authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
 
 # Read only 
