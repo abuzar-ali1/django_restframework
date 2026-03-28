@@ -15,7 +15,7 @@ from rest_framework.permissions import IsAuthenticated , AllowAny , IsAuthentica
 from .permissions import StudentPermissions
 from rest_framework_simplejwt.authentication  import JWTAuthentication
 from rest_framework.throttling import UserRateThrottle , AnonRateThrottle
-
+from .throttles import ZarRateThrottle 
 def welcome(request):
     return HttpResponse('<h1>Welcome in the Django</h1>')
 
@@ -190,7 +190,7 @@ class StudentModelViewSet(viewsets.ModelViewSet):
     serializer_class = StudentSerializer
     authentication_classes = [SessionAuthentication]
     permission_classes = [IsAuthenticatedOrReadOnly]
-    throttle_classes = [UserRateThrottle , AnonRateThrottle ]
+    throttle_classes = [ZarRateThrottle , AnonRateThrottle]
 
 # Read only 
 class StudentReadOnlyModelViewSet(viewsets.ReadOnlyModelViewSet):
