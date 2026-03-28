@@ -11,7 +11,7 @@ from rest_framework.mixins import ListModelMixin , CreateModelMixin , RetrieveMo
 from rest_framework import viewsets
 from django.shortcuts import   get_object_or_404  
 from rest_framework.authentication import BasicAuthentication ,  TokenAuthentication , SessionAuthentication
-from rest_framework.permissions import IsAuthenticated , AllowAny
+from rest_framework.permissions import IsAuthenticated , AllowAny , IsAuthenticatedOrReadOnly
 from .permissions import StudentPermissions
 from rest_framework_simplejwt.authentication  import JWTAuthentication
 from rest_framework.throttling import UserRateThrottle , AnonRateThrottle
@@ -189,8 +189,8 @@ class StudentModelViewSet(viewsets.ModelViewSet):
     queryset = Student.objects.all()
     serializer_class = StudentSerializer
     authentication_classes = [SessionAuthentication]
-    permission_classes = [IsAuthenticated]
-    throttle_classes = [UserRateThrottle ]
+    permission_classes = [IsAuthenticatedOrReadOnly]
+    throttle_classes = [UserRateThrottle , AnonRateThrottle ]
 
 # Read only 
 class StudentReadOnlyModelViewSet(viewsets.ReadOnlyModelViewSet):
