@@ -5,6 +5,11 @@ from api import views
 from rest_framework.routers import DefaultRouter
 from rest_framework.authtoken.views import obtain_auth_token
 from api.auth import CustomAuthToken
+from rest_framework_simplejwt.views import   TokenObtainPairView, TokenRefreshView
+
+
+
+
 
 router = DefaultRouter()
 
@@ -23,5 +28,18 @@ urlpatterns = [
     
     path('api/' , include(router.urls)),
     path('auth/' , include('rest_framework.urls')),
-    path('gettoken/' , CustomAuthToken.as_view())    
+    path('gettoken/' , CustomAuthToken.as_view()) ,
+
+
+
+    # 
+    # TokenURls
+    # 
+
+    path('api/token/' ,TokenObtainPairView.as_view()),
+    path('api/refresh/' , TokenRefreshView.as_view()),
+
+    
+
+       
 ]
