@@ -10,10 +10,11 @@ from rest_framework.generics import GenericAPIView , ListCreateAPIView, Retrieve
 from rest_framework.mixins import ListModelMixin , CreateModelMixin , RetrieveModelMixin , UpdateModelMixin , DestroyModelMixin
 from rest_framework import viewsets
 from django.shortcuts import   get_object_or_404  
-from rest_framework.authentication import BasicAuthentication ,  TokenAuthentication
+from rest_framework.authentication import BasicAuthentication ,  TokenAuthentication , SessionAuthentication
 from rest_framework.permissions import IsAuthenticated , AllowAny
 from .permissions import StudentPermissions
 from rest_framework_simplejwt.authentication  import JWTAuthentication
+from rest_framework.throttling import UserRateThrottle , AnonRateThrottle
 
 def welcome(request):
     return HttpResponse('<h1>Welcome in the Django</h1>')
@@ -187,8 +188,9 @@ class StudentAPIView(viewsets.ViewSet):
 class StudentModelViewSet(viewsets.ModelViewSet):
     queryset = Student.objects.all()
     serializer_class = StudentSerializer
-    authentication_classes = [JWTAuthentication]
+    authentication_classes = [SessionAuthentication]
     permission_classes = [IsAuthenticated]
+    throttle_classes = [UserRateThrottle ]
 
 # Read only 
 class StudentReadOnlyModelViewSet(viewsets.ReadOnlyModelViewSet):

@@ -134,3 +134,18 @@ STATIC_URL = 'static/'
 #         'rest_framework.permissions.IsAuthenticated'
 #     ]
 # }
+
+
+# The default throttling policy may be set globally, using the DEFAULT_THROTTLE_CLASSES and DEFAULT_THROTTLE_RATES settings. For example.
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_THROTTLE_CLASSES': [
+        'rest_framework.throttling.AnonRateThrottle',
+        'rest_framework.throttling.UserRateThrottle'
+    ],
+    'DEFAULT_THROTTLE_RATES': {
+        'anon': '5/day',
+        'user': '10/day'
+    }
+}
