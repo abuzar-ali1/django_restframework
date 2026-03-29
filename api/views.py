@@ -17,11 +17,12 @@ from rest_framework_simplejwt.authentication  import JWTAuthentication
 from rest_framework.throttling import UserRateThrottle , AnonRateThrottle
 from .throttles import ZarRateThrottle 
 from django_filters.rest_framework import  DjangoFilterBackend
+from rest_framework import filters
 
 
 
 
-
+ 
 
 
 
@@ -198,13 +199,9 @@ class StudentModelViewSet(viewsets.ModelViewSet):
     queryset = Student.objects.all()
     serializer_class = StudentSerializer
     authentication_classes = [SessionAuthentication]
-    # permission_classes = [IsAuthenticatedOrReadOnly]
-    # throttle_classes = [ZarRateThrottle , AnonRateThrottle]
-
-
-    # If you want a seperate filter for a view then yiou can add this 
-    filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['name' , 'city']
+    permission_classes = [IsAuthenticatedOrReadOnly] # Enabled example
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['city'] # URL example: /students/?search=London
 
 # Read only 
 class StudentReadOnlyModelViewSet(viewsets.ReadOnlyModelViewSet):
