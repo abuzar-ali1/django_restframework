@@ -161,3 +161,12 @@ STATIC_URL = 'static/'
 #         'django_filters.rest_framework.DjangoFilterBackend',
 #     ),
 # }
+
+
+# Setting the pagination style
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 3
+}
