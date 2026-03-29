@@ -18,6 +18,7 @@ from rest_framework.throttling import UserRateThrottle , AnonRateThrottle
 from .throttles import ZarRateThrottle 
 from django_filters.rest_framework import  DjangoFilterBackend
 from rest_framework import filters
+from .pagination import LargeResultsSetPagination
 
 
 
@@ -202,6 +203,8 @@ class StudentModelViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticatedOrReadOnly] # Enabled example
     filter_backends = [filters.SearchFilter]
     search_fields = ['city'] # URL example: /students/?search=London
+    pagination_class = LargeResultsSetPagination
+    
 
 # Read only 
 class StudentReadOnlyModelViewSet(viewsets.ReadOnlyModelViewSet):
