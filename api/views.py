@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .models import Student
-from .serializers import StudentSerializer
+from .models import Student , Song , Singer
+from .serializers import StudentSerializer , SongSerializer , SingerSerializer
 from django.http import HttpResponse
 from rest_framework.views import APIView
 from rest_framework import status
@@ -209,4 +209,13 @@ class StudentModelViewSet(viewsets.ModelViewSet):
 # Read only 
 class StudentReadOnlyModelViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Student.objects.all()
-    serializer_class = StudentSerializer    
+    serializer_class = StudentSerializer  
+
+
+class SongView(viewsets.ModelViewSet):
+    queryset = Song.objects.all()
+    serializer_class = SongSerializer
+
+class SingerView(viewsets.ModelViewSet):
+    queryset = Singer.objects.all()
+    serializer_class = SingerSerializer

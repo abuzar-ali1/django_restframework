@@ -16,6 +16,8 @@ router = DefaultRouter()
 # router.register('studentapi' , views.StudentAPIView , basename='Stundent')
 # router.register('studentapi' , views.StudentModelViewSet , basename='Stundent')
 router.register('studentapi' , views.StudentModelViewSet , basename='Stundent')
+router.register('songs' , views.SongView , basename='Song')
+router.register('singers' , views.SingerView , basename='Singer')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,6 +26,7 @@ urlpatterns = [
     # path('studentapi/<int:pk>/' , views.student_api)
     # path('studentapi/' , views.LCStudent.as_view()), 
     # path('studentapi/<int:pk>/' , views.RUDStudent.as_view())
+    # path('' , include)
 
     
     path('api/' , include(router.urls)),
