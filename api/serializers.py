@@ -14,9 +14,10 @@ class SongSerializer(serializers.ModelSerializer):
         
 class SingerSerializer(serializers.ModelSerializer):
     song = serializers.StringRelatedField(many=True)
+    songby = SongSerializer(many=True, read_only=True, source='song')
 
     class Meta:
         model = Singer
-        fields = ['id', 'name' , 'gender' , 'song']
+        fields = ['id', 'name' , 'gender' , 'song' , 'songby']
         
 
